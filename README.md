@@ -13,4 +13,4 @@ The quiz app also have a submit button and a reset button.
 The Link to the APK is [link text itself]: http://www.reddit.com
 
 ## Screenshot ##
-[logo]: https://github.com/kelvinrolex/quizapp/blob/master/screenshots/quiz_app_screenshot.JPG
+![alt text](https://github.com/kelvinrolex/quizapp/blob/master/screenshots/quiz_app_screenshot.JPG)
