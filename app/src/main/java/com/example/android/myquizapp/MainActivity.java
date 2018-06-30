@@ -67,11 +67,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     *
+     */
     public void resetQuestions() {
-        resetButton.setVisibility(View.INVISIBLE);
+        resetButton.setVisibility(View.GONE);
         submitButton.setVisibility(View.VISIBLE);
+
         // reset all fields
         correctAnswers = 0;
+
         final CheckBox checkboxMars1 = findViewById(R.id.checkbox_mars);
         if (checkboxMars1.isChecked()) {
             checkboxMars1.setChecked(false);
@@ -305,7 +310,7 @@ public class MainActivity extends AppCompatActivity {
             wrongAnswers.add("Question 1, answers are: Mars, Mercury, Venus\n");
         }
         // Answer 2
-        if (lionText.equalsIgnoreCase("lion")) {
+        if (lionText.trim().equalsIgnoreCase("lion")) {
             correctAnswers++;
         } else {
             wrongAnswers.add("Question 2, answer is: Lion\n");
@@ -378,7 +383,7 @@ public class MainActivity extends AppCompatActivity {
             wrongAnswers.add("Question 9, answers are: Argentina, Germany\n");
         }
         // Answer 10
-        if (worldTradeCenterText.equalsIgnoreCase("2001")) {
+        if (worldTradeCenterText.trim().equalsIgnoreCase("2001")) {
             correctAnswers++;
         } else {
             wrongAnswers.add("Question 10, answer is: 2001");
@@ -422,8 +427,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     })
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
+                        public void onClick(DialogInterface dialog, int which) {}
                     })
                     .show();
             return;
