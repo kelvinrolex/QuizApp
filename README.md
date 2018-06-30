@@ -10,7 +10,8 @@ When the users answers all questions correctly, it shows a toast to congratulate
 
 The quiz app also have a submit button and a reset button.
 
-The Link to the APK is [link text itself]: http://www.reddit.com
+**The Link to the APK is** [link text itself].
+[link text itself]: https://drive.google.com/open?id=1_uvuM7XjEepD6ekrQRatrOTNIcxdjDSc
 
 ## Screenshot ##
 ![alt text](https://github.com/kelvinrolex/quizapp/blob/master/screenshots/quiz_app_screenshot.JPG)
