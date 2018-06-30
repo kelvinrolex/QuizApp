@@ -1,5 +1,7 @@
 package com.example.android.myquizapp;
 
+import android.content.DialogInterface;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+import android.support.v7.app.AlertDialog;
 
 import java.util.ArrayList;
 
@@ -59,69 +62,73 @@ public class MainActivity extends AppCompatActivity {
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resetButton.setVisibility(View.INVISIBLE);
-                submitButton.setVisibility(View.VISIBLE);
-                // reset all fields
-                correctAnswers = 0;
-                final CheckBox checkboxMars1 = findViewById(R.id.checkbox_mars);
-                if (checkboxMars1.isChecked()) {
-                    checkboxMars1.setChecked(false);
-                }
-                final CheckBox checkboxMoon1 = findViewById(R.id.checkbox_moon);
-                if (checkboxMoon1.isChecked()) {
-                    checkboxMoon1.setChecked(false);
-                }
-                final CheckBox checkboxMercury1 = findViewById(R.id.checkbox_mercury);
-                if (checkboxMercury1.isChecked()) {
-                    checkboxMercury1.setChecked(false);
-                }
-                final CheckBox checkboxVenus1 = findViewById(R.id.checkbox_venus);
-                if (checkboxVenus1.isChecked()) {
-                    checkboxVenus1.setChecked(false);
-                }
-                final CheckBox checkboxStar1 = findViewById(R.id.checkbox_star);
-                if (checkboxStar1.isChecked()) {
-                    checkboxStar1.setChecked(false);
-                }
-
-                lion.setText("");
-                radioGroupSolarPower.clearCheck();
-                radioGroupEiffelTower.clearCheck();
-                radioGroupEarthLayer.clearCheck();
-                radioGroupStatues.clearCheck();
-                radioGroupRom.clearCheck();
-                radioGroupNigeria.clearCheck();
-
-                final CheckBox checkboxSpain1 = findViewById(R.id.checkbox_spain);
-                if (checkboxSpain1.isChecked()) {
-                    checkboxSpain1.setChecked(false);
-                }
-                final CheckBox checkboxArgentina1 = findViewById(R.id.checkbox_argentina);
-                if (checkboxArgentina1.isChecked()) {
-                    checkboxArgentina1.setChecked(false);
-                }
-                final CheckBox checkboxBrazil1 = findViewById(R.id.checkbox_brazil);
-                if (checkboxBrazil1.isChecked()) {
-                    checkboxBrazil1.setChecked(false);
-                }
-                final CheckBox checkboxGermany1 = findViewById(R.id.checkbox_germany);
-                if (checkboxGermany1.isChecked()) {
-                    checkboxGermany1.setChecked(false);
-                }
-
-                worldTradeCenter.setText("");
-                checkboxMars = false;
-                checkboxMoon = false;
-                checkboxMercury = false;
-                checkboxVenus = false;
-                checkboxStar = false;
-                checkboxSpain = false;
-                checkboxArgentina = false;
-                checkboxBrazil = false;
-                checkboxGermany = false;
-                checkboxWorldCupCount = 0;
+                resetQuestions();
             }
         });
+    }
+
+    public void resetQuestions() {
+        resetButton.setVisibility(View.INVISIBLE);
+        submitButton.setVisibility(View.VISIBLE);
+        // reset all fields
+        correctAnswers = 0;
+        final CheckBox checkboxMars1 = findViewById(R.id.checkbox_mars);
+        if (checkboxMars1.isChecked()) {
+            checkboxMars1.setChecked(false);
+        }
+        final CheckBox checkboxMoon1 = findViewById(R.id.checkbox_moon);
+        if (checkboxMoon1.isChecked()) {
+            checkboxMoon1.setChecked(false);
+        }
+        final CheckBox checkboxMercury1 = findViewById(R.id.checkbox_mercury);
+        if (checkboxMercury1.isChecked()) {
+            checkboxMercury1.setChecked(false);
+        }
+        final CheckBox checkboxVenus1 = findViewById(R.id.checkbox_venus);
+        if (checkboxVenus1.isChecked()) {
+            checkboxVenus1.setChecked(false);
+        }
+        final CheckBox checkboxStar1 = findViewById(R.id.checkbox_star);
+        if (checkboxStar1.isChecked()) {
+            checkboxStar1.setChecked(false);
+        }
+
+        lion.setText("");
+        radioGroupSolarPower.clearCheck();
+        radioGroupEiffelTower.clearCheck();
+        radioGroupEarthLayer.clearCheck();
+        radioGroupStatues.clearCheck();
+        radioGroupRom.clearCheck();
+        radioGroupNigeria.clearCheck();
+
+        final CheckBox checkboxSpain1 = findViewById(R.id.checkbox_spain);
+        if (checkboxSpain1.isChecked()) {
+            checkboxSpain1.setChecked(false);
+        }
+        final CheckBox checkboxArgentina1 = findViewById(R.id.checkbox_argentina);
+        if (checkboxArgentina1.isChecked()) {
+            checkboxArgentina1.setChecked(false);
+        }
+        final CheckBox checkboxBrazil1 = findViewById(R.id.checkbox_brazil);
+        if (checkboxBrazil1.isChecked()) {
+            checkboxBrazil1.setChecked(false);
+        }
+        final CheckBox checkboxGermany1 = findViewById(R.id.checkbox_germany);
+        if (checkboxGermany1.isChecked()) {
+            checkboxGermany1.setChecked(false);
+        }
+
+        worldTradeCenter.setText("");
+        checkboxMars = false;
+        checkboxMoon = false;
+        checkboxMercury = false;
+        checkboxVenus = false;
+        checkboxStar = false;
+        checkboxSpain = false;
+        checkboxArgentina = false;
+        checkboxBrazil = false;
+        checkboxGermany = false;
+        checkboxWorldCupCount = 0;
     }
 
     /**
@@ -259,6 +266,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * this method is to grade the user
+     */
     public void grade() {
         // set the correctAnswer variable to 0 before grading
         correctAnswers = 0;
@@ -292,86 +302,86 @@ public class MainActivity extends AppCompatActivity {
             // answer is correct
             correctAnswers++;
         } else {
-            wrongAnswers.add("Question 1, Answers are: Mars, Mercury, Venus");
+            wrongAnswers.add("Question 1, answers are: Mars, Mercury, Venus\n");
         }
         // Answer 2
         if (lionText.equalsIgnoreCase("lion")) {
             correctAnswers++;
         } else {
-            wrongAnswers.add("Question 2, Answers is: Lion");
+            wrongAnswers.add("Question 2, answer is: Lion\n");
         }
         // Answer 3
         if (selectedRadioButtonSolarPowerId > 0) {
             if (selectedRadioButtonSolarPower.getText().toString().equalsIgnoreCase("The Sun")) {
                 correctAnswers++;
             } else {
-                wrongAnswers.add("Question 3, Answers is: The Sun");
+                wrongAnswers.add("Question 3, answer is: The Sun\n");
             }
         } else {
-            wrongAnswers.add("Question 3, Answers is: The Sun");
+            wrongAnswers.add("Question 3, answer is: The Sun\n");
         }
         // Answer 4
         if (selectedRadioButtonEiffelTowerId > 0) {
             if (selectedRadioButtonEiffelTower.getText().toString().equalsIgnoreCase("France")) {
                 correctAnswers++;
             } else {
-                wrongAnswers.add("Question 4, Answers is: France");
+                wrongAnswers.add("Question 4, answer is: France\n");
             }
         } else {
-            wrongAnswers.add("Question 4, Answers is: France");
+            wrongAnswers.add("Question 4, answer is: France\n");
         }
         // Answer 5
         if (selectedRadioButtonEarthLayerId > 0) {
             if (selectedRadioButtonEarthLayer.getText().toString().equalsIgnoreCase("The Ozone Layer")) {
                 correctAnswers++;
             } else {
-                wrongAnswers.add("Question 5, Answers is: The Ozone Layer");
+                wrongAnswers.add("Question 5, answer is: The Ozone Layer\n");
             }
         } else {
-            wrongAnswers.add("Question 5, Answers is: The Ozone Layer");
+            wrongAnswers.add("Question 5, answer is: The Ozone Layer\n");
         }
         // Answer 6
         if (selectedRadioButtonStatuesId > 0) {
             if (selectedRadioButtonStatues.getText().toString().equalsIgnoreCase("Statue of Liberty")) {
                 correctAnswers++;
             } else {
-                wrongAnswers.add("Question 6, Answers is: Statue of Liberty");
+                wrongAnswers.add("Question 6, answer is: Statue of Liberty\n");
             }
         } else {
-            wrongAnswers.add("Question 6, Answers is: Statue of Liberty");
+            wrongAnswers.add("Question 6, answer is: Statue of Liberty\n");
         }
         // Answer 7
         if (selectedRadioButtonRomId > 0) {
             if (selectedRadioButtonRom.getText().toString().equalsIgnoreCase("Read Only Memory")) {
                 correctAnswers++;
             } else {
-                wrongAnswers.add("Question 7, Answers is: Read Only Memory");
+                wrongAnswers.add("Question 7, answer is: Read Only Memory\n");
             }
         } else {
-            wrongAnswers.add("Question 7, Answers is: Read Only Memory");
+            wrongAnswers.add("Question 7, answer is: Read Only Memory\n");
         }
         // Answer 8
         if (selectedRadioButtonNigeriaId > 0) {
             if (selectedRadioButtonNigeria.getText().toString().equalsIgnoreCase("1963")) {
                 correctAnswers++;
             } else {
-                wrongAnswers.add("Question 8, Answers is: 1963");
+                wrongAnswers.add("Question 8, answer is: 1963\n");
             }
         } else {
-            wrongAnswers.add("Question 8, Answers is: 1963");
+            wrongAnswers.add("Question 8, answer is: 1963\n");
         }
         // Answer 9
         if (checkboxArgentina && checkboxGermany) {
             // answer is correct
             correctAnswers++;
         } else {
-            wrongAnswers.add("Question 9, Answers are: Argentina, Germany");
+            wrongAnswers.add("Question 9, answers are: Argentina, Germany\n");
         }
         // Answer 10
         if (worldTradeCenterText.equalsIgnoreCase("2001")) {
             correctAnswers++;
         } else {
-            wrongAnswers.add("Question 10, Answers is: 2001");
+            wrongAnswers.add("Question 10, answer is: 2001");
         }
 
 
@@ -381,23 +391,41 @@ public class MainActivity extends AppCompatActivity {
             submitButton.setVisibility(View.GONE);
             resetButton.setVisibility(View.VISIBLE);
 
-            Toast.makeText(getApplicationContext(), "CONGRATULATIONS! You won the quiz, you got 10/10", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "CONGRATULATIONS! You won the quiz, you scored 10/10", Toast.LENGTH_LONG).show();
             return;
         }
 
         if (correctAnswers < 10) {
-            // hide the submit button
-            submitButton.setVisibility(View.GONE);
-            resetButton.setVisibility(View.VISIBLE);
-
+            // only hide the buttons if the user answer a question
+            if (correctAnswers > 0) {
+                submitButton.setVisibility(View.GONE);
+                resetButton.setVisibility(View.VISIBLE);
+            }
             // combine all the failed questions and show them to the user
             String wrongAnswersDisplay = "";
             for (String s : wrongAnswers) {
-                wrongAnswersDisplay += s + "\t";
+                wrongAnswersDisplay += s;
             }
 
+            // reset the wrong answers
             wrongAnswers.clear();
-            Toast.makeText(getApplicationContext(), "Failed questions \n" + wrongAnswersDisplay + "\n\nYou got " + correctAnswers + "/10, you can try again.", Toast.LENGTH_LONG).show();
+
+            // I am using an alertDialog because i want to be able to display the answers to the failed questions to the users
+            AlertDialog.Builder builder;
+            builder = new AlertDialog.Builder(this);
+            builder.setTitle("Failed Questions")
+                    .setMessage(wrongAnswersDisplay + "\n\nYou scored " + correctAnswers + "/10.")
+                    .setPositiveButton("Try Again", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // reset the questions and try again
+                            resetQuestions();
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    })
+                    .show();
             return;
         }
     }
